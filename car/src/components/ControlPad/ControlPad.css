@@ -1,0 +1,72 @@
+.dpad-wrap {
+  padding: 14px;
+  display: flex;
+  justify-content: center;
+}
+
+.dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 48px);
+  grid-template-rows: repeat(3, 48px);
+  gap: 4px;
+  grid-template-areas:
+    ". up ."
+    "left center right"
+    ". bottom .";
+}
+
+.dpad-btn {
+  background: var(--bg3);
+  border: 1.5px solid var(--bdr);
+  border-radius: 8px;
+  color: var(--t1);
+  font-size: 19px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.12s;
+  user-select: none;
+}
+
+.dpad-btn:hover {
+  background: var(--cyanm);
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+.dpad-btn:active {
+  transform: scale(0.91);
+  background: var(--cyanm);
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+.dpad-btn--stop {
+  color: var(--red);
+  border-color: var(--red);
+  font-size: 15px;
+}
+
+.dpad-btn--stop:hover {
+  background: rgba(200, 30, 30, 0.08);
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.dpad-btn--stop:active {
+  background: rgba(200, 30, 30, 0.15);
+}
+
+.dpad-btn--disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.dpad-btn--up     { grid-area: up; }
+.dpad-btn--left   { grid-area: left; }
+.dpad-btn--center { grid-area: center; }
+.dpad-btn--right  { grid-area: right; }
+.dpad-btn--bottom { grid-area: bottom; }

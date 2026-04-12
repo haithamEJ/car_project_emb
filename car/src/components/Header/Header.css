@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: 0.06em;
+}
+
+.theme-btn {
+  background: var(--bg3);
+  border: 1.5px solid var(--bdr);
+  border-radius: 7px;
+  cursor: pointer;
+  padding: 6px 14px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--t1);
+  letter-spacing: 0.08em;
+  transition: all 0.15s;
+}
+
+.theme-btn:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
