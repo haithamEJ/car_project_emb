@@ -77,3 +77,45 @@
   margin-top: 4px;
   letter-spacing: 0.08em;
 }
+
+
+.viz-area {
+  position: relative; /* add this */
+}
+
+.tire-overlay {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: grid;
+  grid-template-columns: 22px 44px 22px;
+  grid-template-rows: 16px 74px 16px;
+  gap: 3px;
+  align-items: center;
+  justify-items: center;
+  background: var(--bg2);
+  border: 1px solid var(--bdr);
+  border-radius: 8px;
+  padding: 8px;
+  opacity: 0.85;
+}
+
+.car-svg {
+  grid-column: 2;
+  grid-row: 1 / 4;
+  width: 44px;
+  height: 74px;
+  align-self: center;
+}
+
+.tire {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  color: var(--cyan);
+  font-weight: 600;
+}
+
+.tire--front { grid-column: 2; grid-row: 1; }
+.tire--back  { grid-column: 2; grid-row: 3; }
+.tire--left  { grid-column: 1; grid-row: 2; }
+.tire--right { grid-column: 3; grid-row: 2; }

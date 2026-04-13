@@ -1,72 +1,68 @@
-.dpad-wrap {
-  padding: 14px;
+.joystick-wrap {
   display: flex;
   justify-content: center;
+  padding: 18px 14px 10px;
 }
 
-.dpad {
-  display: grid;
-  grid-template-columns: repeat(3, 48px);
-  grid-template-rows: repeat(3, 48px);
-  gap: 4px;
-  grid-template-areas:
-    ". up ."
-    "left center right"
-    ". bottom .";
-}
-
-.dpad-btn {
+.joystick-base {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
   background: var(--bg3);
   border: 1.5px solid var(--bdr);
-  border-radius: 8px;
-  color: var(--t1);
-  font-size: 19px;
-  font-weight: 700;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.12s;
-  user-select: none;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.15s;
 }
 
-.dpad-btn:hover {
-  background: var(--cyanm);
+.joystick-base:hover {
   border-color: var(--cyan);
-  color: var(--cyan);
 }
 
-.dpad-btn:active {
-  transform: scale(0.91);
-  background: var(--cyanm);
-  border-color: var(--cyan);
-  color: var(--cyan);
-}
-
-.dpad-btn--stop {
-  color: var(--red);
-  border-color: var(--red);
-  font-size: 15px;
-}
-
-.dpad-btn--stop:hover {
-  background: rgba(200, 30, 30, 0.08);
-  border-color: var(--red);
-  color: var(--red);
-}
-
-.dpad-btn--stop:active {
-  background: rgba(200, 30, 30, 0.15);
-}
-
-.dpad-btn--disabled {
-  opacity: 0.2;
+.joystick-base--off {
+  opacity: 0.25;
   cursor: not-allowed;
   pointer-events: none;
 }
 
-.dpad-btn--up     { grid-area: up; }
-.dpad-btn--left   { grid-area: left; }
-.dpad-btn--center { grid-area: center; }
-.dpad-btn--right  { grid-area: right; }
-.dpad-btn--bottom { grid-area: bottom; }
+.joystick-knob {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--cyan);
+  transition: transform 0.15s ease;
+  pointer-events: none;
+}
+
+/* Radio buttons */
+.drive-mode {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 14px 14px;
+}
+
+.radio-opt {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: var(--t2);
+  cursor: pointer;
+  letter-spacing: 0.08em;
+}
+
+.radio-opt input[type="radio"] {
+  accent-color: var(--cyan);
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+.radio-opt:has(input:checked) span {
+  color: var(--cyan);
+}

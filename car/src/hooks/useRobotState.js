@@ -8,6 +8,7 @@ const initialState = {
   temperature: 32,
   position: { x: 0, y: 0 },
   connected: true,
+  tirePressure: { fl: 33, fr: 32, rl: 32, rr: 33 },
   logs: [
     { time: "00:00:01", msg: "System boot complete" },
     { time: "00:00:02", msg: "Motor drivers online" },
@@ -38,6 +39,15 @@ function reducer(state, action) {
       return { ...initialState, logs: [...state.logs.slice(-19), { time: now, msg: "System reset" }] };
     case "START":
       return { ...state, logs: [...state.logs.slice(-19), { time: now, msg: "Autonomous mode started" }] };
+      // add to reducer switch cases:
+case "SET_MODE_AUTO":
+  return { ...state, logs: [...state.logs.slice(-19), { time: now, msg: "Switched to autonomous" }] };
+case "SET_MODE_MANUAL":
+  return { ...state, logs: [...state.logs.slice(-19), { time: now, msg: "Switched to manual" }] };
+
+  case "REPLAY":
+  return { ...state, logs: [...state.logs.slice(-19), { time: now, msg: "Replay started" }] };
+  
     default:
       return state;
   }

@@ -5,6 +5,7 @@ import DisplayScreen from "./components/DisplayScreen/DisplayScreen";
 import ControlPad from "./components/ControlPad/ControlPad";
 import StatusBar from "./components/StatusBar/StatusBar";
 import { useRobotState } from "./hooks/useRobotState";
+
 import "./index.css";
 
 export default function App() {
@@ -19,8 +20,8 @@ export default function App() {
       <main className="main-grid">
         <DisplayScreen mode={mode} robotState={robotState} />
         <aside className="side-panel">
-          <ControlPad dispatch={dispatch} mode={mode} />
-          <StatusBar robotState={robotState} />
+          <ControlPad dispatch={dispatch} mode={mode} setMode={setMode} />
+          <StatusBar mode={mode} />
         </aside>
       </main>
     </div>
