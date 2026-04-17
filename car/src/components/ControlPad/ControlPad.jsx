@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./ControlPad.css";
 
-const SIZE = 110;   // outer circle diameter px
-const KNOB = 36;    // inner knob diameter px
-const MAX  = (SIZE - KNOB) / 2;  // max knob travel
+const SIZE = 110;   
+const KNOB = 36;    
+const MAX  = (SIZE - KNOB) / 2;  
 
 function getDirection(dx, dy) {
   if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return null;
@@ -16,40 +16,76 @@ function getDirection(dx, dy) {
 
 export default function ControlPad({ dispatch, mode, setMode }) {
   const [knob, setKnob] = useState({ x: 0, y: 0 });
+  const dragging = useRef(false);
+  const baseRef = useRef(null);
   const enabled = mode === "manual";
 
-  function handleClick(e) {
-    if (!enabled) return;
-    const rect = e.currentTarget.getBoundingClientRect();
+  function getOffset(e) {
+  const rect = baseRef.current.getBoundingClientRect();
+  const cx = rect.left + rect.width / 2;
+  const cy = rect.top + rect.height / 2;
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  const dx = clientX - cx;
+  const dy = clientY - cy;
+  const dist = Math.sqrt(dx * dx + dy * dy);
+  const scale = Math.min(dist, MAX) / (dist || 1);
+  return { dx, dy, kx: dx * scale, ky: dy * scale };
+}
+
+function onStart(e) {
+  if (!enabled) return;
+  dragging.current = true;
+  const { kx, ky } = getOffset(e);
+  setKnob({ x: kx, y: ky });
+}
+
+
+useEffect(() => {
+  function handleMove(e) {
+    if (!dragging.current || !enabled) return;
+    e.preventDefault();
+    const rect = baseRef.current.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
     const dx = e.clientX - cx;
     const dy = e.clientY - cy;
     const dist = Math.sqrt(dx * dx + dy * dy);
-    const scale = Math.min(dist, MAX) / dist || 0;
-    const kx = dx * scale;
-    const ky = dy * scale;
-    setKnob({ x: kx, y: ky });
-
+    const scale = Math.min(dist, MAX) / (dist || 1);
+    setKnob({ x: dx * scale, y: dy * scale });
     const dir = getDirection(dx, dy);
     if (dir) dispatch({ type: dir });
-
-    // snap back after 300ms
-    setTimeout(() => setKnob({ x: 0, y: 0 }), 300);
   }
+
+  function handleUp() {
+    if (!dragging.current) return;
+    dragging.current = false;
+    setKnob({ x: 0, y: 0 });
+    dispatch({ type: "STOP" });
+  }
+
+  window.addEventListener("mousemove", handleMove);
+  window.addEventListener("mouseup", handleUp);
+  return () => {
+    window.removeEventListener("mousemove", handleMove);
+    window.removeEventListener("mouseup", handleUp);
+  };
+}, [enabled, dispatch]);
 
   return (
     <div className="panel">
       <div className="panel-label">Directional Control</div>
       <div className="joystick-wrap">
-        <div
-          className={`joystick-base ${!enabled ? "joystick-base--off" : ""}`}
-          onClick={handleClick}
-        >
-          <div
-            className="joystick-knob"
-            style={{ transform: `translate(${knob.x}px, ${knob.y}px)` }}
-          />
+      <div
+        ref={baseRef}
+        className={`joystick-base ${!enabled ? "joystick-base--off" : ""}`}
+        onMouseDown={onStart}
+        onTouchStart={onStart}
+      >
+      <div
+          className="joystick-knob"
+          style={{ transform: `translate(${knob.x}px, ${knob.y}px)` }}
+      />
         </div>
       </div>
 

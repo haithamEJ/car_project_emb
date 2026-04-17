@@ -8,7 +8,7 @@ const initialState = {
   temperature: 32,
   position: { x: 0, y: 0 },
   connected: true,
-  tirePressure: { fl: 33, fr: 32, rl: 32, rr: 33 },
+  tirePressure: { fl: 1, fr: 32, rl: 320, rr: 200 },
   logs: [
     { time: "00:00:01", msg: "System boot complete" },
     { time: "00:00:02", msg: "Motor drivers online" },

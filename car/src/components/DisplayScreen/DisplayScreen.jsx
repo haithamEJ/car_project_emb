@@ -4,6 +4,14 @@ export default function DisplayScreen({ robotState }) {
   const speed = robotState.speed;
   const barColor = speed > 70 ? "var(--red)" : speed > 40 ? "var(--amb)" : "var(--cyan)";
 
+
+  function tireColor(val) {
+  if (val >= 301)  return "var(--grn)";
+  if (val >= 101)  return "#f2fe6f"; 
+  if (val >= 21)   return "#ffa41cc0";   
+  return "var(--red)";
+  }
+
   return (
     <section className="display-screen panel">
       <div className="speed-strip">
@@ -15,10 +23,18 @@ export default function DisplayScreen({ robotState }) {
       </div>
       <div className="viz-area">
       <div className="tire-overlay">
-  <div className="tire tire--front">{robotState.tirePressure.fl}</div>
-  <div className="tire tire--left">{robotState.tirePressure.fr}</div>
-  <div className="tire tire--right">{robotState.tirePressure.rl}</div>
-  <div className="tire tire--back">{robotState.tirePressure.rr}</div>
+<div className="tire tire--front" style={{ color: tireColor(robotState.tirePressure.fl) }}>
+  {robotState.tirePressure.fl}
+</div>
+<div className="tire tire--left"  style={{ color: tireColor(robotState.tirePressure.fr) }}>
+  {robotState.tirePressure.fr}
+</div>
+<div className="tire tire--right" style={{ color: tireColor(robotState.tirePressure.rl) }}>
+  {robotState.tirePressure.rl}
+</div>
+<div className="tire tire--back"  style={{ color: tireColor(robotState.tirePressure.rr) }}>
+  {robotState.tirePressure.rr}
+</div>
   <svg className="car-svg" viewBox="0 0 60 100" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect x="8" y="10" width="44" height="80" rx="10" stroke="var(--t2)" strokeWidth="1.5"/>
     <rect x="14" y="22" width="32" height="30" rx="6" stroke="var(--t2)" strokeWidth="1.2"/>

@@ -59,7 +59,7 @@
 
 .viz-icon {
   font-size: 36px;
-  color: var(--bdr);
+  color: #9acdd6;
   margin-bottom: 8px;
 }
 
@@ -111,7 +111,6 @@
 .tire {
   font-family: 'Share Tech Mono', monospace;
   font-size: 9px;
-  color: var(--cyan);
   font-weight: 600;
 }
 

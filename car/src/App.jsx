@@ -10,7 +10,7 @@ import "./index.css";
 
 export default function App() {
   const { robotState, dispatch } = useRobotState();
-  const [mode, setMode] = useState("idle"); // idle | running | manual | settings
+  const [mode, setMode] = useState("idle"); 
   const [darkMode, setDarkMode] = useState(true);
 
   return (

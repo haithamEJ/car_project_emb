@@ -10,7 +10,7 @@
 .app.dark {
   --bg:    #0a0e1a;
   --bg2:   #0f1623;
-  --bg3:   #161e2e;
+  --bg3:   #2e4167;
   --bg4:   #111827;
   --bdr:   #1e2d45;
   --cyan:  #00d4ff;
@@ -19,8 +19,8 @@
   --red:   #ef4444;
   --grn:   #22c55e;
   --t1:    #e2eaf5;
-  --t2:    #6b8cad;
-  --t3:    #3a5068;
+  --t2:    #9acdd6;
+  --t3:    #9acdd6; /*9acdd6*/
 }
 
 /* LIGHT THEME */

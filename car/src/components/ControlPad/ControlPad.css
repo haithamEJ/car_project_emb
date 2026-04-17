@@ -9,7 +9,7 @@
   height: 110px;
   border-radius: 50%;
   background: var(--bg3);
-  border: 1.5px solid var(--bdr);
+  border: 1.5px solid wh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,7 +37,6 @@
   pointer-events: none;
 }
 
-/* Radio buttons */
 .drive-mode {
   display: flex;
   justify-content: center;
