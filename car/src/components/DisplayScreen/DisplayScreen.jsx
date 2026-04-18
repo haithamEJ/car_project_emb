@@ -7,7 +7,7 @@ export default function DisplayScreen({ robotState }) {
 
   function tireColor(val) {
   if (val >= 301)  return "var(--grn)";
-  if (val >= 101)  return "#f2fe6f"; 
+  if (val >= 101)  return "#aebf43"; 
   if (val >= 21)   return "#ffa41cc0";   
   return "var(--red)";
   }

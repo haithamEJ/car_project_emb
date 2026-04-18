@@ -20,7 +20,7 @@
   --grn:   #22c55e;
   --t1:    #e2eaf5;
   --t2:    #9acdd6;
-  --t3:    #9acdd6; /*9acdd6*/
+  --t3:    #9acdd6; 
 }
 
 /* LIGHT THEME */
@@ -90,4 +90,9 @@ body {
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
+}
+
+::selection {
+  background: transparent;  /* or any color you want */
+  color: inherit;
 }
